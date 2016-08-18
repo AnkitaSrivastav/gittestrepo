@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+import java.util.List;
+
+
+public class CutTheSticks {
+	
+
+	public static void main(String[] args) 
+	{
+		ArrayList sticks=new ArrayList();
+		
+		System.out.println("Enter num of sticks");
+		Scanner x = new Scanner(System.in);
+		int noOfSticks=x.nextInt();
+		sticksValue(sticks,noOfSticks);
+		System.out.println("stick length\tlength cut\tsticks cut");
+		ArrayList temp=sticks;
+		cutSticks(sticks,temp,noOfSticks);
+	}
+	
+					
+	
+	static boolean emptyList(ArrayList stick,int n)
+	{
+		for(int i=0;i<n;i++)
+		{	
+		
+			int stic=(Integer)stick.get(i);
+			if(stic!=0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	static void sticksValue(ArrayList sticks,int noOfSticks)
+	{
+			for(int i=0;i<noOfSticks;i++)
+			{
+				Scanner y = new Scanner(System.in);
+				int value=y.nextInt();
+				sticks.add(i,value);
+				sticks.get(i);
+				
+			}
+	}
+	static void cutSticks(ArrayList sticks,ArrayList temp,int noOfSticks)
+	{	
+			int count=0;
+			do
+			{
+				Object minHeight=new Object();
+					do{
+						minHeight=Collections.min(temp);
+						if((Integer)minHeight==0)
+						temp.remove(Collections.min(temp));
+						else 
+							break;
+					}while(true);
+			
+				System.out.print("\n"+sticks);
+				
+				for(int i=0;i<sticks.size();i++)
+				{
+				
+					int stick=(Integer)sticks.get(i);
+			
+					if(stick!=0)
+					{
+						stick-=(Integer)minHeight;
+						sticks.remove(i);
+						sticks.add(i,0);
+						sticks.add(i,stick);
+						count++;
+						
+					}
+				
+					
+				}
+			
+				System.out.print("\t"+minHeight+"\t");
+				System.out.print(count);
+				
+				
+				temp=sticks;
+				//flag=false;
+				count=0;
+				}while(emptyList(sticks,noOfSticks));
+			System.out.println("Done\tDone\tDone");
+					
+						
+		}			
+		
+
+}
